@@ -9,23 +9,29 @@ Vagrant.configure("2") do |config|
   
   config.vm.box = "ubuntu/xenial64"
 
+  # This is where you set up the Virtual Machine power paremeters like RAM etc.
   config.vm.provider "virtualbox" do |vb|
     vb.memory = 4096
     vb.cpus = 4
+#    -this option makes the virtual machine faster and is unimportant
     vb.customize ["modifyvm", :id, "--ioapic", "on"]
   end
 
-  # Network
+  # Network - The host is your computer, guest is the virtual computer
   config.vm.network "forwarded_port", guest: 3000, host: 3000
+#   - 3306 is usually used for MySQL
   config.vm.network "forwarded_port", guest: 3306, host: 3306
+#   -this is where you change the ip address for the virutal machine
   config.vm.network "private_network", ip: "192.168.10.100"
 
   # config.vm.network "private_network", type: "dhcp"
 
 
   # Shared Folders
+#   - the second parameter after the comma is the root folder address of Virtual Machine, the nfs is a file setting parameter used by Mac and Linus Systems to make things more efficient.
   config.vm.synced_folder ".", "/home/vagrant/projects", type: "nfs"
 
+#  ****provisions contain the Specifics of how the development environment and Dependencies are set up.
   config.vm.provision "shell", inline: <<-SHELL
     # update 
     sudo apt-get update
