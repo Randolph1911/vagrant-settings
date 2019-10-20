@@ -77,3 +77,6 @@ Vagrant.configure("2") do |config|
     sudo service apache2 restart
   SHELL
 end
+
+#I encounctered a recurring set of bugs during the SSH step after the Vagrant envionments where fully set up. The errors where consistently dealing the private_key and public_key. The Vagrant box inside of the root of the projects folder was destroyed [it's Vagrantfile and instructions are above]. The Vagrant Box inside the vgdemo folder from the Traversy Media course was destroyed also. The compatible Vagrant and Virtualbox executable files where stored inside a folder in the 'coding' folder. The Codingphase Vagrant tutorial was left off after the ~26:50 minute mark due to issues executing the vagrant ssh step. I was able to use the vitual computers installed inside of virtual machines but could not ssh into them from Cmder, Powershell, Bash, or the WSL Terminal inside VS Code. Vagrant and VirtualBox will be uninstalled at the close of this notation.
+
